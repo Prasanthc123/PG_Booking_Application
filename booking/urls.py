@@ -26,5 +26,6 @@ urlpatterns = [
     path('insert_pg/',insert_pg,name='insert_pg'),
     path('display_pg/',display_pg,name='display_pg'),
     path('view_details/',view_details,name='view_details'),
+    path('registration/',registration,name='registration'),
     
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

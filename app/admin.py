@@ -5,6 +5,8 @@ from app.models import *
 
 admin.site.register(Pgs)
 
+admin.site.register(Profile)
+
 admin.site.register(Booking)
 
 admin.site.register(Payment)
