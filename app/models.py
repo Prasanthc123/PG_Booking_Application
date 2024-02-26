@@ -10,7 +10,6 @@ class Profile(models.Model):
     def __str__(self):
         return self.username.username
 
-
 class Pgs(models.Model):
     pg_name=models.CharField(max_length=100)
     pg_address=models.CharField(max_length=500)
@@ -36,7 +35,7 @@ class Booking(models.Model):
     Photo=models.ImageField()
 
     def __str__(self):
-        return self.pg_name
+        return self.pg_name.pg_name
 
 class Payment(models.Model):
     amount=models.DecimalField(max_digits=10,decimal_places=2)

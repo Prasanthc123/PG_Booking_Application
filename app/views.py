@@ -3,6 +3,9 @@ from app.models import *
 from app.forms import *
 from django.http import HttpResponse,HttpResponseRedirect
 from django.core.mail import send_mail
+from django.contrib.auth import authenticate,login,logout
+from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def dummy(request):
@@ -10,11 +13,11 @@ def dummy(request):
 
 
 def insert_pg(request):
-    EFPO=pgform()
+    EFPO=PgForm()
     d={'EFPO':EFPO}
 
     if request.method=='POST':
-        DFPO=pgform(request.POST)
+        DFPO=PgForm(request.POST)
         if DFPO.is_valid():
             DFPO.save()
             return HttpResponse('pg inserted successfully')
@@ -57,3 +60,31 @@ def registration(request):
         else:
             return HttpResponse('invalid data')
     return render(request,'registration.html',context=d)
+
+
+def login_page(request):
+    if request.method=='POST':
+        username=request.POST['un']
+        password=request.POST['pw']
+        AUO=authenticate(username=username,password=password)
+        if AUO and AUO.is_active:
+            login(request,AUO)
+            request.session['username']=username
+            return HttpResponseRedirect(reverse('dummy'))
+        else:
+            return HttpResponse('Incorrect Username or Password.Please try again.')
+    return render(request,'login_page.html')
+
+@login_required
+def display_profile(request):
+    un=request.session.get('username')
+    uo=User.objects.get(username=un)
+    po=Profile.objects.get(username=uo)
+    d={'uo':uo,'po':po}
+    return render(request,'display_profile.html',d)
+
+
+def Booking(request):
+    EBFO=BookingForm()
+    d={'EBFO':EBFO}
+    return render(request,'Booking.html',d)

@@ -16,7 +16,15 @@ class ProfileForm(forms.ModelForm):
         fields=['address','profile_pic']
 
 
-class pgform(forms.ModelForm):
+class PgForm(forms.ModelForm):
     class Meta():
         model=Pgs
         fields='__all__'
+
+    
+class BookingForm(forms.ModelForm):
+    class Meta():
+        model=Booking
+        fields='__all__'
+        widgets={'address':forms.Textarea(attrs={'cols':20,'rows':6})}
+        

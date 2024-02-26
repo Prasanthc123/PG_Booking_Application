@@ -27,5 +27,8 @@ urlpatterns = [
     path('display_pg/',display_pg,name='display_pg'),
     path('view_details/',view_details,name='view_details'),
     path('registration/',registration,name='registration'),
+    path('login_page/',login_page,name='login_page'),
+    path('display_profile/',display_profile,name='display_profile'),
+    path('Booking/',Booking,name='Booking'),
     
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
