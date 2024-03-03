@@ -88,3 +88,8 @@ def Booking(request):
     EBFO=BookingForm()
     d={'EBFO':EBFO}
     return render(request,'Booking.html',d)
+
+
+
+def payment(request):
+    return render(request,'payment.html')
